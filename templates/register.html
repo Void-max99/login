@@ -3,37 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0f0e17;
+            color: #fffffe;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #1a1932, #232246);
+            padding: 40px 36px;
+            border-radius: 16px;
+            width: 360px;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .card p.subtitle {
+            font-size: 0.85rem;
+            color: #a7a9be;
+            margin-bottom: 28px;
+        }
+
+        .error {
+            background: rgba(255,107,107,0.12);
+            color: #ff6b6b;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            margin-bottom: 18px;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #a7a9be;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.04);
+            color: #fffffe;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 18px;
+            transition: border-color 0.2s, background 0.2s;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #7f5af0;
+            background: rgba(127,90,240,0.06);
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: #7f5af0;
+            color: #fffffe;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            margin-top: 4px;
+        }
+
+        button:hover { background: #6b46d9; }
+        button:active { transform: scale(0.98); }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.84rem;
+            color: #a7a9be;
+        }
+
+        .footer-link a {
+            color: #7f5af0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-link a:hover { text-decoration: underline; }
+    </style>
 </head>
-<style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    .form-style{
-       background: white;
-       padding: 30px;
-       border-radius: 12px;
-       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-       width: 300px;
-       }
-</style>
 <body>
-    <div class="form-style">
+    <div class="card">
+        <h2>Create account</h2>
+        <p class="subtitle">Register to get started</p>
+
         {% if error %}
-            <div class="error">{{error}}</div>
+            <div class="error">{{ error }}</div>
         {% endif %}
-        <form action=""method='POST'>
+
+        <form action="" method="POST">
             {% csrf_token %}
             <label for="username">Username</label>
-            <input type="text" name="username">
+            <input type="text" name="username" id="username" placeholder="Choose a username" required>
             <label for="password">Password</label>
-            <input type="password" name="passsword">
-            <button type="submit">Submit</button>
+            <input type="password" name="passsword" id="password" placeholder="Create a password" required>
+            <button type="submit">Create Account</button>
         </form>
+        <div class="footer-link">
+            Already have an account? <a href="{% url 'index' %}">Sign in</a>
+        </div>
     </div>
 </body>
 </html>

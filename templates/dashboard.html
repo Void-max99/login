@@ -3,9 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f0e17;
+            color: #fffffe;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: linear-gradient(145deg, #1a1932, #232246);
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        nav .brand {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #a7a9be;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: #ff6b6b; }
+
+        .container {
+            max-width: 720px;
+            margin: 60px auto;
+            padding: 0 24px;
+        }
+
+        .welcome-card {
+            background: linear-gradient(145deg, #1a1932, #232246);
+            border-radius: 14px;
+            padding: 36px 32px;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .welcome-card h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .welcome-card p {
+            font-size: 0.92rem;
+            color: #a7a9be;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
-    <div>hi</div>
+    <nav>
+        <span class="brand">Dashboard</span>
+        <a href="{% url 'index' %}">Logout</a>
+    </nav>
+    <div class="container">
+        <div class="welcome-card">
+            <h1>Hello, {{ request.user.username|default:"User" }} 👋</h1>
+            <p>You're logged in. This is your dashboard.</p>
+        </div>
+    </div>
 </body>
 </html>
